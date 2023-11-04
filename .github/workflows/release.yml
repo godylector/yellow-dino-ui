@@ -30,14 +30,14 @@ jobs:
         with:
           node-version: 16
 
-      - name: Read release body from file
-        id: read_file
-        run: |
-          body_content=$(<path_to_your_file.md)
-          echo "::set-output name=release_body::$body_content"
-
       - name: Get the version from package.json
         run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
+      - name: Read Changelog
+        id: read_changelog
+        run: |
+          echo "::set-output name=changelog::$(cat CHANGELOG.md)"
+        shell: bash
 
       - name: Create Github Release
         uses: actions/create-release@v1
@@ -46,6 +46,6 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
-          body: ${{ steps.read_file.outputs.release_body }}
+          body: ${{ steps.read_changelog.outputs.changelog }}
           draft: false
           prerelease: false
