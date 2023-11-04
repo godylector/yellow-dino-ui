@@ -1,1 +1,1 @@
-# yellow-dino-ui
+# yellow-dino-ui + tailwind css
