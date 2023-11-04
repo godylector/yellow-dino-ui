@@ -36,7 +36,7 @@ jobs:
       - name: Read Changelog
         id: read_changelog
         run: |
-          changelog=$(awk '/^#/ && NR > 1 {exit} {print}' CHANGELOG.md)
+          changelog=$(awk '/^#/ {f++} f == 1 && f++ {print} f == 2 {exit}' CHANGELOG.md)
           echo "::set-output name=changelog::$changelog"
         shell: bash
 
