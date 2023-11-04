@@ -1,27 +1,23 @@
 import { FC, ReactNode } from "react";
-import '../Core/index.css'
-import "./button.css";
-import { mainConfig } from "../Core";
+import '../../index.css'
+import { mainConfig } from "../config";
 
 interface ButtonProps {
   children: ReactNode;
   bgColor?: string;
-  rounded: string
+  rounded?: string
 }
 
 export const Button: FC<ButtonProps> = ({
   children,
-  bgColor = mainConfig.themeColor,
+  bgColor = mainConfig.colorTheme,
   rounded = 'rounded-md'
 }) => {
   return (
     <button
       type="button"
-      className={`button ${rounded}`}
-      style={{
-        backgroundColor: bgColor,
-        border: "none",
-      }}
+      style={{ backgroundColor: bgColor }}
+      className={`py-2 px-5 ${rounded}`}
     >
       {children ?? children}
     </button>

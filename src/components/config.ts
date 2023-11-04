@@ -1,3 +1,3 @@
 export const mainConfig = {
-     themeColor: '#ffc900'
+     colorTheme: "#ffc900"
 }
