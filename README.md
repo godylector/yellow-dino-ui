@@ -1,1 +1,1 @@
-# @yellow-dino/ui Components
+# yellow-dino-ui
