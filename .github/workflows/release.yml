@@ -32,10 +32,9 @@ jobs:
 
       - name: Create Github Release
         uses: actions/create-release@v1
-        with:
-          node-version: 18
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          node-version: 18
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
