@@ -1966,6 +1966,14 @@ yaml@^2.1.1:
   resolved "https://registry.npmjs.org/yaml/-/yaml-2.3.4.tgz"
   integrity sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==
 
+yellow-dino-ui@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/yellow-dino-ui/-/yellow-dino-ui-0.0.2.tgz#84eaec5de63bb0adf761b763edde740ea991b2ad"
+  integrity sha512-NeVqAAvjpJ7ChDgK2ZgPBPrnjwcZs0Dtfqw5Fph3qgxGN3skQkrvQTzdAVRIWnMmR4mhWWL+683euRNlAopS+A==
+  dependencies:
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
