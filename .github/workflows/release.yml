@@ -8,17 +8,17 @@ on:
       - 'v*'
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-  #     - name: Install dependencies and build the project
-  #       run: npm install && npm run build
+      - name: Install dependencies and build the project
+        run: npm install && npm run build
 
   release:
     # needs: build
@@ -45,6 +45,8 @@ jobs:
           tag_name: v${{ env.VERSION }}
           release_name: v${{ env.VERSION }}
           body: |
-            ${{ steps.read-changelog.outputs.changelog_content }}
+            ### Update
+            - Update Release
+            - Adjust Workflows
           draft: false
           prerelease: false
