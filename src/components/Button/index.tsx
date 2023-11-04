@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
-import '../../index.css'
 import { mainConfig } from "../config";
+import '../../index.css'
 
 interface ButtonProps {
   children: ReactNode;
