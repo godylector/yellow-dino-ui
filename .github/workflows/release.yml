@@ -30,14 +30,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: Get package version
-        run: |
-          export VERSION=$(jq -r '.version' package.json)
-
       - name: Create Github Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v$VERSION
-          release_name: Release v$VERSION
+          tag_name: ${{ github.tag }}
+          release_name: ${{ github.tag }}
