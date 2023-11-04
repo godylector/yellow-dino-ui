@@ -1,5 +1,5 @@
-name: 'Auto Release'
-description: 'Automatically create a release based on commit messages'
+name: 'test2222'
+description: 'test222'
 inputs:
   title:
     description: 'Title for the release'
