@@ -1974,6 +1974,15 @@ yellow-dino-ui@^0.0.2:
     react "^18.2.0"
     react-dom "^18.2.0"
 
+yellow-dino-ui@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/yellow-dino-ui/-/yellow-dino-ui-0.0.3.tgz#716ad612a78c9a66c99f5c669e2aee677a6a42e7"
+  integrity sha512-uYhCUE/pzWhRP3xwC+wNq0QhJJxt8VoM0rO+CJ0sxM22TsS2oaP2Vb/PRs96UOPWshd+zA2LuJFtxTT0L+UuMA==
+  dependencies:
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    yellow-dino-ui "^0.0.2"
+
 yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
