@@ -33,11 +33,9 @@ jobs:
       - name: Get the version from package.json
         run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
 
-      - name: Read Changelog
-        id: read_changelog
-        run: |
-          echo "::set-output name=changelog::$(cat CHANGELOG.md)"
-        shell: bash
+      - name: Read Changelog content
+        id: read-changelog
+        run: echo "::set-output name=changelog_content::$(cat CHANGELOG.md)"
 
       - name: Create Github Release
         uses: actions/create-release@v1
@@ -46,9 +44,6 @@ jobs:
         with:
           tag_name: v${{ env.VERSION }}
           release_name: v${{ env.VERSION }}
-          body: |
-            Test
-            - test1
-            - test2
+          body: ${{ steps.read-changelog.outputs.changelog_content }}
           draft: false
           prerelease: false
