@@ -8,20 +8,20 @@ on:
       - 'v*'
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-  #     - name: Install dependencies and build the project
-  #       run: npm install && npm run build
+      - name: Install dependencies and build the project
+        run: npm install && npm run build
 
   release:
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -38,5 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          node-version: 16
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
