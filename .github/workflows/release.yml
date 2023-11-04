@@ -30,8 +30,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: Get the content of the CHANGELOG.md file
-        run: cat CHANGELOG.md > changelog.txt
+      - uses: jaywcjlove/github-action-read-file@v1
+        id: read-changelog
+        with:
+          path: CHANGELOG.md
 
       - name: Get the version from package.json
         run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
@@ -43,6 +45,6 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
-          body: ${{ readFile('changelog.txt') }}
+          body: ${{ steps.read-changelog.outputs.content }}
           draft: false
           prerelease: false
