@@ -17,3 +17,16 @@ jobs:
 
       - name: Install dependencies and build the project
         run: npm install && npm run build
+
+      - name: Create a tag
+        uses: actions/create-tag@v5
+        with:
+          tag_name: 'v1.0.0'
+
+      - name: Publish a release
+        uses: actions/create-release@v6
+        with:
+          tag_name: 'v1.0.0'
+          commitish: ${{ github.sha }}
+          release_name: 'My Release'
+          body: 'This is my first release!'
