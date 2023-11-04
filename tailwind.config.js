@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        "theme": "#ffc900",
+        "hover-theme": "#ffaa00"
+      }
     },
   },
   plugins: [],

@@ -1,10 +1,14 @@
 import { FC, Fragment } from "react";
-import { Button } from "yellow-dino-ui";
+import { Button } from './components/Button'
 
 const App: FC = () => {
   return (
     <Fragment>
-      <Button>
+      <Button
+        color="white"
+        rounded="md"
+        duration="300"
+      >
         test
       </Button>
     </Fragment>
