@@ -44,9 +44,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: ${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
+          release_name: v${{ env.VERSION }}
           body: |
-            ${{ steps.read_changelog.outputs.changelog }}
+            Test
+            - test1
+            - test2
           draft: false
           prerelease: false
