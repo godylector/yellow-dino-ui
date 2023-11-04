@@ -46,7 +46,10 @@ jobs:
           release_name: v${{ env.VERSION }}
           body: |
             ### Update
-            - Update Release
-            - Adjust Workflows
+            - Make Major Component
+            - Push to public
+
+            ### Credits
+            Thanks @Justinzdev
           draft: false
           prerelease: false
