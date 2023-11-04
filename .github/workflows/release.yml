@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -24,9 +26,15 @@ jobs:
           tag_name: 'v1.0.0'
 
       - name: Publish a release
-        uses: actions/create-release@v6
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: 'v1.0.0'
-          commitish: ${{ github.sha }}
-          release_name: 'My Release'
-          body: 'This is my first release!'
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
