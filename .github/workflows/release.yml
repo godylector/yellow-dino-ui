@@ -30,20 +30,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Get the CHANGELOG.md file
-        uses: actions/download-artifact@v3
-        with:
-          name: CHANGELOG.md
-          path: ./
-
-      - name: Read the CHANGELOG.md file
-        id: read-changelog
-        run: cat ./CHANGELOG.md
-
-      - name: Set the release body
-        run: |
-          echo "## Changes in this Release" >> $GITHUB_ENV
-          cat ${{ steps.read-changelog.outputs.stdout }} >> $GITHUB_ENV
+      - name: Get the content of the CHANGELOG.md file
+        run: cat CHANGELOG.md > changelog.txt
 
       - name: Get the version from package.json
         run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
@@ -55,6 +43,6 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
-          body: ${{ env.RELEASE_BODY }}
+          body: ${{ readFile('changelog.txt') }}
           draft: false
           prerelease: false
