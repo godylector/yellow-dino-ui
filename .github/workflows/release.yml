@@ -8,17 +8,17 @@ on:
       - 'v*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  # build:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
 
-      - name: Install dependencies and build the project
-        run: npm install && npm run build
+  #     - name: Install dependencies and build the project
+  #       run: npm install && npm run build
 
   release:
     needs: build
@@ -30,10 +30,13 @@ jobs:
         with:
           node-version: 16
 
+      - name: Get the version from package.json
+        run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
       - name: Create Github Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.tag }}
-          release_name: ${{ github.tag }}
+          tag_name: ${{ env.VERSION }}
+          release_name: ${{ env.VERSION }}
