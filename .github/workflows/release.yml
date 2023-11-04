@@ -36,8 +36,7 @@ jobs:
       - name: Read Changelog
         id: read_changelog
         run: |
-          changelog=$(awk '/^#/ {f++} f == 1 && f++ {print} f == 2 {exit}' CHANGELOG.md)
-          echo "::set-output name=changelog::$changelog"
+          echo "::set-output name=changelog::$(cat CHANGELOG.md)"
         shell: bash
 
       - name: Create Github Release
@@ -45,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.VERSION }}
-          release_name: v${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          release_name: ${{ env.VERSION }}
           body: |
             ${{ steps.read_changelog.outputs.changelog }}
           draft: false
