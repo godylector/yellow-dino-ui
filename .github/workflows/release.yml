@@ -8,20 +8,20 @@ on:
       - 'v*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  # build:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
 
-      - name: Install dependencies and build the project
-        run: npm install && npm run build
+  #     - name: Install dependencies and build the project
+  #       run: npm install && npm run build
 
   release:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +29,21 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - name: Get the CHANGELOG.md file
+        uses: actions/download-artifact@v3
+        with:
+          name: CHANGELOG.md
+          path: ./
+
+      - name: Read the CHANGELOG.md file
+        id: read-changelog
+        run: cat ./CHANGELOG.md
+
+      - name: Set the release body
+        run: |
+          echo "## Changes in this Release" >> $GITHUB_ENV
+          cat ${{ steps.read-changelog.outputs.stdout }} >> $GITHUB_ENV
 
       - name: Get the version from package.json
         run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
@@ -38,6 +53,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          node-version: 16
           tag_name: ${{ env.VERSION }}
           release_name: ${{ env.VERSION }}
+          body: ${{ env.RELEASE_BODY }}
+          draft: false
+          prerelease: false
